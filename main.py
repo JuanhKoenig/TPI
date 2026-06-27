@@ -32,13 +32,11 @@ import csv
 paises = []
 
 with open("paises.csv", "r", encoding="utf-8", newline="") as archivo:
-    lector = csv.DictReader(archivo)
+    lector = csv.DictReader(archivo) #esto saltea los encabezados, entonces borre el next(lector)
 
-    next(lector)
-
-    for linea in archivo:
+    for linea in lector:
         print(linea)
-        paises.append({"nombre" : linea[0], "poblacion" : linea[1], "superficie": linea[2], "continente" : linea[3]})
+        paises.append({"nombre" : linea["nombre"], "poblacion" : int(linea["poblacion"]), "superficie": int(linea["superficie"]), "continente" : linea["continente"]})
 
 
 
@@ -126,7 +124,42 @@ def agregar_pais():
 
         else:
             print(f"Superficie registrada exitosamente: {pais_nuevo_superficie}\n")
+            break
+    
+    while True:
+        #registrar continente
+        #para este vamos a usar un menu
+        try:
+            pais_nuevo_continente = int(input("Continente:\n1. Asia\n2. África\n3. América\n4. Antártida\n5. Europa\n6. Oceanía"))
+            if pais_nuevo_continente not in (1, 2, 3, 4, 5, 6):
+                raise ValueError("fuera de rango")
+        
+        except ValueError as e:
+            if str(e) == "fuera de rango":
+                print("opcion fuera de rango")
+            else:
+                print("Error. por favor, elija una de las opciones con los numeros del 1 al 7: \n")
 
+        else:
+            if pais_nuevo_continente == 1:
+                pais_nuevo_continente = "Asia"
+            
+            elif pais_nuevo_continente == 2:
+                pais_nuevo_continente = "África"
+
+            elif pais_nuevo_continente == 3:
+                pais_nuevo_continente = "América"
+
+            elif pais_nuevo_continente == 4:
+                pais_nuevo_continente = "Ántartida"
+
+            elif pais_nuevo_continente == 5:
+                pais_nuevo_continente = "Europa"
+
+            else:
+                pais_nuevo_continente = "Oceanía"
+            print(f"Contiente del pais registrado exitosamente: {pais_nuevo_continente}")
+            break
 
 
         
