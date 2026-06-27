@@ -62,9 +62,12 @@ def menu_principal():
         else:
             return eleccion
 
+
+
 #AGREGAR PAIS CON VALIDACIONES
 
-def agregar_pais():
+
+def agregar_pais_nombre():    
     while True:
         #nombre del pais
         try: 
@@ -83,8 +86,9 @@ def agregar_pais():
 
         else:
             print(f"nombre del pais registrado exitosamente: {pais_nuevo}\n")
-            break
-    
+            return pais_nuevo
+
+def agregar_pais_poblacion():
     while True:
         #registrar poblacion
         try: 
@@ -103,8 +107,9 @@ def agregar_pais():
         
         else:
             print(f"poblacion registrada exitosamente: {pais_nuevo_poblacion}\n")
-            break
-    
+            return pais_nuevo_poblacion
+
+def agregar_pais_superficie():
     while True:
         #registrar superficie
         try:
@@ -124,8 +129,9 @@ def agregar_pais():
 
         else:
             print(f"Superficie registrada exitosamente: {pais_nuevo_superficie}\n")
-            break
-    
+            return pais_nuevo_superficie
+
+def agregar_pais_continente():    
     while True:
         #registrar continente
         #para este vamos a usar un menu
@@ -138,7 +144,7 @@ def agregar_pais():
             if str(e) == "fuera de rango":
                 print("opcion fuera de rango")
             else:
-                print("Error. por favor, elija una de las opciones con los numeros del 1 al 7: \n")
+                print("Error. por favor, elija una de las opciones con los numeros del 1 al 6: \n")
 
         else:
             if pais_nuevo_continente == 1:
@@ -159,9 +165,59 @@ def agregar_pais():
             else:
                 pais_nuevo_continente = "Oceanía"
             print(f"Contiente del pais registrado exitosamente: {pais_nuevo_continente}")
-            break
+            return pais_nuevo_continente
 
 
-    #ya esta todo registrado y validado, se puede agregar:
+#ya esta todo registrado y validado, se puede agregar:
+def agregar_pais():
+    pais_nuevo = agregar_pais_nombre()
+    pais_nuevo_poblacion = agregar_pais_poblacion()
+    pais_nuevo_superficie = agregar_pais_superficie()
+    pais_nuevo_continente = agregar_pais_continente()
     paises.append({"nombre": pais_nuevo, "poblacion": pais_nuevo_poblacion, "superficie": pais_nuevo_superficie, "continente": pais_nuevo_continente})
+
+
+#BUSCAR (no es una funcion de usuario)
+
+def buscar():
+    while True:    
+        try:
+            pais_buscado = input("Buscar: ").strip().title()
+
+            pais_encontrado = False
+
+            for pais in paises:
+                if pais_buscado.lower() in pais["nombre"].lower():
+                    pais_encontrado = True
+                    pais_datos = pais
+                
+                
+            if pais_encontrado == False:
+                raise ValueError("no encontrado")
+            
+        except ValueError as e:
+            if str(e) == "no encontrado":
+                print(f"Pais \"{pais_buscado}\" no encontrado\n")
+            else:
+                print("Error desconocido")
+        
+        else:
+            return pais_datos
+        
+
+#ACTUALIZAR DATOS
+
+def actualizar_datos():
+
+    while True:
+        
+        print("\nEditar Datos\n")
+        editar_datos = buscar()
+        print(editar_datos)
+
+        try:
+
+            tipo_de_dato = int(input("Editar: \n1.Nombre\n2.Poblacion\n3.Superficie\n4.Continente"))
+            if tipo_de_dato not in (1, 2, 3, 4):
+                raise ValueError("fuera de rango")
 
