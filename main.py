@@ -42,7 +42,7 @@ with open("paises.csv", "r", encoding="utf-8", newline="") as archivo:
 
 #MENU
 
-def menu_principal(eleccion):
+def menu_principal():
 
     while True:
         try:
@@ -162,5 +162,6 @@ def agregar_pais():
             break
 
 
-        
+    #ya esta todo registrado y validado, se puede agregar:
+    paises.append({"nombre": pais_nuevo, "poblacion": pais_nuevo_poblacion, "superficie": pais_nuevo_superficie, "continente": pais_nuevo_continente})
 
