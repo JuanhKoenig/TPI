@@ -41,8 +41,6 @@ with open("paises.csv", "r", encoding="utf-8", newline="") as archivo:
         paises.append({"nombre" : linea[0], "poblacion" : linea[1], "superficie": linea[2], "continente" : linea[3]})
 
 
-print(paises)
-
 
 #MENU
 
@@ -57,6 +55,79 @@ def menu_principal(eleccion):
             
         except ValueError as e:
             if str(e) == "fuera de rango":
-                print("Opcion fuera de rango\n")
+                print("\nOpcion fuera de rango\n")
             else:
-                print("Error, use solo numeros\n")
+                print("\nError, use solo numeros\n")
+        except Exception as e:
+            print(f"Ocurrio un error inesperado: {e}")
+        
+        else:
+            return eleccion
+
+#AGREGAR PAIS CON VALIDACIONES
+
+def agregar_pais():
+    while True:
+        #nombre del pais
+        try: 
+            pais_nuevo = input("Nombre del pais: ").strip().title()
+
+            #validar que no este ya en la lista de diccionarios
+            for pais in paises:
+                if pais_nuevo == pais["nombre"]:
+                    raise ValueError("repetido")
+                
+        except ValueError as e:
+            if str(e) == "repetido":
+                print(f"Error, el pais {pais_nuevo} ya esta registrado en la lista\n")
+            else:
+                print("Error desconocido\n")
+
+        else:
+            print(f"nombre del pais registrado exitosamente: {pais_nuevo}\n")
+            break
+    
+    while True:
+        #registrar poblacion
+        try: 
+            pais_nuevo_poblacion = int(input("Poblacion: "))
+            if pais_nuevo_poblacion < 0:
+                raise ValueError("negativo")
+            
+        except ValueError as e:
+            if str(e) == "negativo":
+                print("Error. El valor de la poblacion no puede ser negativo\n")
+            else:
+                print("Error. Use numeros para indicar la poblacion\n")
+
+        except Exception as e:
+            print(f"Error desconocido: {e}")
+        
+        else:
+            print(f"poblacion registrada exitosamente: {pais_nuevo_poblacion}\n")
+            break
+    
+    while True:
+        #registrar superficie
+        try:
+            pais_nuevo_superficie = int(input("Superficie: "))
+
+            if pais_nuevo_superficie < 0:
+                raise ValueError("negativo")
+            
+        except ValueError as e:
+            if str(e) == "negativo":
+                print("Error, no se permiten numeros negativos para la superficie\n")
+            else:
+                print("Error. use numeros para indicar la superficie\n")
+            
+        except Exception as e:
+            print(f"Error desconocido: {e}")
+
+        else:
+            print(f"Superficie registrada exitosamente: {pais_nuevo_superficie}\n")
+
+
+
+        
+
