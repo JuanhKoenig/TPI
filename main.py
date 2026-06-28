@@ -170,11 +170,12 @@ def agregar_pais_continente():
 
 #ya esta todo registrado y validado, se puede agregar:
 def agregar_pais():
-    pais_nuevo = agregar_pais_nombre()
-    pais_nuevo_poblacion = agregar_pais_poblacion()
-    pais_nuevo_superficie = agregar_pais_superficie()
-    pais_nuevo_continente = agregar_pais_continente()
-    paises.append({"nombre": pais_nuevo, "poblacion": pais_nuevo_poblacion, "superficie": pais_nuevo_superficie, "continente": pais_nuevo_continente})
+    paises.append({
+        "nombre": agregar_pais_nombre(),
+        "poblacion": agregar_pais_poblacion(),
+        "superficie": agregar_pais_superficie(),
+        "continente": agregar_pais_continente()
+    })
 
 
 #BUSCAR (no es una funcion de usuario)
@@ -211,13 +212,36 @@ def actualizar_datos():
 
     while True:
         
-        print("\nEditar Datos\n")
+        print("\nEditando...\n")
         editar_datos = buscar()
         print(editar_datos)
 
         try:
 
             tipo_de_dato = int(input("Editar: \n1.Nombre\n2.Poblacion\n3.Superficie\n4.Continente"))
+
             if tipo_de_dato not in (1, 2, 3, 4):
                 raise ValueError("fuera de rango")
+            
+        except ValueError as e:
+            if str(e) == "fuera de rango":
+                print("\nError. opcion fuera de rango, use los numeros del 1 al 4\n")
+            else:
+                print("\nError. Use numeros\n")
+        
+        else:
+
+            if tipo_de_dato == 1:
+                agregar_pais_nombre()
+                
+            if tipo_de_dato == 2:
+                agregar_pais_poblacion()
+
+            if tipo_de_dato == 3:
+                agregar_pais_superficie()
+
+            if tipo_de_dato == 4:
+                agregar_pais_continente()
+            
+
 
