@@ -234,14 +234,15 @@ def actualizar_datos():
             if tipo_de_dato == 1:
                 editar_datos["nombre"] = agregar_pais_nombre()
                 
-            if tipo_de_dato == 2:
+            elif tipo_de_dato == 2:
                 editar_datos["poblacion"] = agregar_pais_poblacion()
 
-            if tipo_de_dato == 3:
+            elif tipo_de_dato == 3:
                 editar_datos["superficie"] = agregar_pais_superficie()
 
-            if tipo_de_dato == 4:
+            else:
                 editar_datos["continente"] = agregar_pais_continente()
             
+            break
 
 
