@@ -82,7 +82,7 @@ def agregar_pais_nombre():
             if str(e) == "repetido":
                 print(f"Error, el pais {pais_nuevo} ya esta registrado en la lista\n")
             else:
-                print("Error desconocido\n")
+                print(f"Error inesperado: {e}\n")
 
         else:
             print(f"nombre del pais registrado exitosamente: {pais_nuevo}\n")
@@ -178,7 +178,9 @@ def agregar_pais():
     })
 
 
-#BUSCAR (no es una funcion de usuario)
+#BUSCAR
+# no es una funcion de usuario, esto es una herramienta que complementa a las funciones
+# de actualizar datos y buscar 
 
 def buscar():
     while True:    
@@ -246,3 +248,27 @@ def actualizar_datos():
             break
 
 
+#ESTADISTICAS
+
+def mostrar_estadisticas(paises):
+    #buscar el menor y el mayor de las poblaciones y superficies
+
+    
+    mayor_poblacion = paises[0]
+    menor_poblacion = paises[0]
+
+    mayor_superficie = paises[0]
+    menor_superficie = paises[0]
+
+    for item in range(1, len(paises)):
+        
+        indice_actual = paises[item]
+
+        #POBLACION
+
+        if indice_actual["poblacion"] < menor_poblacion["poblacion"]:
+            menor_poblacion = indice_actual
+        
+        if indice_actual["poblacion"] > mayor_poblacion["poblacion"]:
+            mayor_poblacion = indice_actual
+            
