@@ -232,16 +232,16 @@ def actualizar_datos():
         else:
 
             if tipo_de_dato == 1:
-                agregar_pais_nombre()
+                editar_datos["nombre"] = agregar_pais_nombre()
                 
             if tipo_de_dato == 2:
-                agregar_pais_poblacion()
+                editar_datos["poblacion"] = agregar_pais_poblacion()
 
             if tipo_de_dato == 3:
-                agregar_pais_superficie()
+                editar_datos["superficie"] = agregar_pais_superficie()
 
             if tipo_de_dato == 4:
-                agregar_pais_continente()
+                editar_datos["continente"] = agregar_pais_continente()
             
 
 
