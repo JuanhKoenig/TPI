@@ -250,7 +250,7 @@ def actualizar_datos():
 
 #ESTADISTICAS
 
-def mostrar_estadisticas(paises):
+def estadisticas_extremos(paises):
     #buscar el menor y el mayor de las poblaciones y superficies
 
     
@@ -272,3 +272,43 @@ def mostrar_estadisticas(paises):
         if indice_actual["poblacion"] > mayor_poblacion["poblacion"]:
             mayor_poblacion = indice_actual
             
+        #SUPERFICIE
+
+        if indice_actual["superficie"] < menor_superficie["superficie"]:
+            menor_superficie = indice_actual
+
+        if indice_actual["superficie"] > mayor_superficie["superficie"]:
+            mayor_superficie = indice_actual
+    
+    return mayor_poblacion, menor_poblacion, menor_superficie, mayor_superficie
+
+
+def estadisticas_promedio(paises):
+    promedio_poblacion = 0
+    promedio_superficie = 0
+
+    for item in paises:
+        promedio_poblacion += item["poblacion"]
+        promedio_superficie += item["superficie"]
+
+    promedio_poblacion = (promedio_poblacion / len(paises) )
+    promedio_superficie = (promedio_superficie / len(paises) )
+
+    return promedio_poblacion, promedio_superficie
+
+
+
+
+def ver_estadisticas():
+    extremos = estadisticas_extremos(paises)
+    promedios = estadisticas_promedio(paises)
+
+    mayor_poblacion = extremos[0]
+    menor_poblacion = extremos[1]
+    mayor_superficie = extremos[2]
+    mayor_superficie = extremos[3]
+
+    print("\nESTADISTICAS: \n")
+
+    print("POBLACION: \n")
+    print(f"Mayor: {mayor_poblacion[0]}\nMenor: {mayor_poblacion[0]}\n")
