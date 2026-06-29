@@ -35,7 +35,6 @@ with open("paises.csv", "r", encoding="utf-8", newline="") as archivo:
     lector = csv.DictReader(archivo) #esto saltea los encabezados, entonces borre el next(lector)
 
     for linea in lector:
-        print(linea)
         paises.append({"nombre" : linea["nombre"], "poblacion" : int(linea["poblacion"]), "superficie": int(linea["superficie"]), "continente" : linea["continente"]})
 
 
@@ -62,6 +61,14 @@ def menu_principal():
         else:
             return eleccion
 
+
+
+
+#VER DATOS:
+
+def ver_datos():
+    for item in paises:
+        print(item)
 
 
 #AGREGAR PAIS CON VALIDACIONES
@@ -280,7 +287,7 @@ def estadisticas_extremos(paises):
         if indice_actual["superficie"] > mayor_superficie["superficie"]:
             mayor_superficie = indice_actual
     
-    return mayor_poblacion, menor_poblacion, menor_superficie, mayor_superficie
+    return mayor_poblacion, menor_poblacion, mayor_superficie, menor_superficie
 
 
 def estadisticas_promedio(paises):
@@ -291,8 +298,8 @@ def estadisticas_promedio(paises):
         promedio_poblacion += item["poblacion"]
         promedio_superficie += item["superficie"]
 
-    promedio_poblacion = (promedio_poblacion / len(paises) )
-    promedio_superficie = (promedio_superficie / len(paises) )
+    promedio_poblacion = round((promedio_poblacion / len(paises)), 2)
+    promedio_superficie = round((promedio_superficie / len(paises) ), 2)
 
     return promedio_poblacion, promedio_superficie
 
@@ -300,15 +307,63 @@ def estadisticas_promedio(paises):
 
 
 def ver_estadisticas():
-    extremos = estadisticas_extremos(paises)
-    promedios = estadisticas_promedio(paises)
+    extremos = estadisticas_extremos(paises) #tupla con 4 diccionarios 
+    promedios = estadisticas_promedio(paises) #tupla con 2 diccionarios
 
     mayor_poblacion = extremos[0]
     menor_poblacion = extremos[1]
     mayor_superficie = extremos[2]
-    mayor_superficie = extremos[3]
+    menor_superficie = extremos[3]
 
     print("\nESTADISTICAS: \n")
 
-    print("POBLACION: \n")
-    print(f"Mayor: {mayor_poblacion[0]}\nMenor: {mayor_poblacion[0]}\n")
+    print("\nPOBLACION: \n")
+    print(f"Mayor: {mayor_poblacion["nombre"]} - {mayor_poblacion["poblacion"]} habitantes\n")
+    print(f"Menor: {menor_poblacion["nombre"]} - {menor_poblacion["poblacion"]} habitantes\n")
+    print(f"Promedio: {promedios[0]}\n")
+    print(f"\nSUPERFICIE: \n")
+    print(f"Mayor: {mayor_superficie["nombre"]} : {mayor_superficie["superficie"]} Km2\n")
+    print(f"Menor: {menor_superficie["nombre"]} : {menor_superficie["superficie"]} Km2\n")
+    print(f"Promedio: {promedios[1]} Km2")
+
+
+
+
+
+#GUARDAR Y SALIR
+
+def guardar():
+    with open("paises.csv", "w", encoding="utf-8", newline="") as archivo:
+        escritor = csv.DictWriter(archivo, fieldnames=["nombre", "poblacion", "superficie", "continente"])
+        escritor.writeheader()
+        escritor.writerows(paises)
+
+
+
+
+#ARMAR EL PROGRAMA
+
+def programa_principal():
+    while True:
+        eleccion = menu_principal()
+
+        if eleccion == 1:
+            ver_datos()
+
+        elif eleccion == 2:
+            agregar_pais()
+        
+        elif eleccion == 3:
+            actualizar_datos()
+        
+        elif eleccion == 4:
+            print(buscar())
+
+        elif eleccion == 5:
+            ver_estadisticas()
+        
+        else:
+            guardar()
+            break
+
+programa_principal()
