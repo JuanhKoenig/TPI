@@ -85,8 +85,15 @@ def ver_datos():
                 print("\nOpcion invalida, use solo numeros\n")
             
         if datos_eleccion == 1:
-            pass
-            #filtro por continente
+            
+            continentes = ["America", "Africa", "Oceania", "Europa", "Asia", "Antartida"]
+
+            print("seleccione continente: ")
+            for i in range(len(continentes)):
+                index = i + 1
+                print(f"{index}) {continentes[i]}")
+            continente_seleccionado = int(input("> "))
+
         
         elif datos_eleccion == 2:
             pass
