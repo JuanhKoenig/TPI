@@ -1,4 +1,4 @@
-#1 Leer el CSV y cargarlo en una lista de diccionarios
+#Leer el CSV y cargarlo en una lista de diccionarios
 
 import csv
 
@@ -32,8 +32,7 @@ import csv
 paises = []
 
 with open("paises.csv", "r", encoding="utf-8", newline="") as archivo:
-    lector = csv.DictReader(archivo) #esto saltea los encabezados, entonces borre el next(lector)
-
+    lector = csv.DictReader(archivo) 
     for linea in lector:
         paises.append({"nombre" : linea["nombre"], "poblacion" : int(linea["poblacion"]), "superficie": int(linea["superficie"]), "continente" : linea["continente"]})
 
@@ -67,9 +66,36 @@ def menu_principal():
 #VER DATOS:
 
 def ver_datos():
+
     for item in paises:
         print(item)
+# FILTROS
 
+    while True:
+        try:
+            datos_eleccion = int(input("1)Filtrar por Continente\n2)Filtrar por rango de poblacion\n3)Filtrar por rango de superficie\n"))
+
+            if datos_eleccion not in (1, 2, 3, 4): #4 es para volver
+                raise ValueError("fuera de rango")
+        
+        except ValueError as e:
+            if str(e) == "fuera de rango":
+                print("\nOpcion fuera de rango\n")
+            else:
+                print("\nOpcion invalida, use solo numeros\n")
+            
+        if datos_eleccion == 1:
+            pass
+            #filtro por continente
+        
+        elif datos_eleccion == 2:
+            pass
+            #filtro por rangos de poblacion ingresados por el usuario
+        elif datos_eleccion == 3:
+            pass
+            #filtro por rangos de superficie ingresados por el usuario
+        else:
+            break
 
 #AGREGAR PAIS CON VALIDACIONES
 
@@ -84,10 +110,16 @@ def agregar_pais_nombre():
             for pais in paises:
                 if pais_nuevo == pais["nombre"]:
                     raise ValueError("repetido")
+                elif pais_nuevo == "":
+                    raise ValueError("vacio")
                 
         except ValueError as e:
             if str(e) == "repetido":
                 print(f"Error, el pais {pais_nuevo} ya esta registrado en la lista\n")
+
+            elif str(e) == "vacio":
+                print("No se permiten nombres vacios")
+
             else:
                 print(f"Error inesperado: {e}\n")
 
@@ -143,7 +175,7 @@ def agregar_pais_continente():
         #registrar continente
         #para este vamos a usar un menu
         try:
-            pais_nuevo_continente = int(input("Continente:\n1. Asia\n2. África\n3. América\n4. Antártida\n5. Europa\n6. Oceanía"))
+            pais_nuevo_continente = int(input("Continente:\n1. Asia\n2. África\n3. América\n4. Antártida\n5. Europa\n6. Oceanía\n"))
             if pais_nuevo_continente not in (1, 2, 3, 4, 5, 6):
                 raise ValueError("fuera de rango")
         
@@ -357,7 +389,7 @@ def programa_principal():
             actualizar_datos()
         
         elif eleccion == 4:
-            print(buscar())
+            print(buscar()) #hay que decorar esto
 
         elif eleccion == 5:
             ver_estadisticas()
