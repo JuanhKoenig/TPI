@@ -73,7 +73,7 @@ def ver_datos():
 
     while True:
         try:
-            datos_eleccion = int(input("1)Filtrar por Continente\n2)Filtrar por rango de poblacion\n3)Filtrar por rango de superficie\n"))
+            datos_eleccion = int(input("1)Filtrar por Continente\n2)Filtrar por rango de poblacion\n3)Filtrar por rango de superficie\n4)Volver\n"))
 
             if datos_eleccion not in (1, 2, 3, 4): #4 es para volver
                 raise ValueError("fuera de rango")
@@ -86,13 +86,29 @@ def ver_datos():
             
         if datos_eleccion == 1:
             
-            continentes = ["America", "Africa", "Oceania", "Europa", "Asia", "Antartida"]
 
-            print("seleccione continente: ")
-            for i in range(len(continentes)):
-                index = i + 1
-                print(f"{index}) {continentes[i]}")
-            continente_seleccionado = int(input("> "))
+            try:
+
+                continentes = ["América", "África", "Oceanía", "Europa", "Asia", "Antártida"]
+
+                print("seleccione continente: ")
+                for i in range(len(continentes)):
+                    index = i + 1
+                    print(f"{index}) {continentes[i]}")
+                continente_seleccionado = int(input("> "))
+
+                if continente_seleccionado not in (1, 2, 3, 4, 5, 6):
+                    raise ValueError("fuera de rango")
+            except ValueError as e:
+                if str(e) == "fuera de rango":
+                    print("\nOpcion fuera de rango\n")
+                else:
+                    print("\nOpcion invalida, use numeros del 1 la 6\n")
+            else:
+                for item in paises:
+                    if item["continente"] == continentes[continente_seleccionado - 1]: #-1 para que se ajuste al indice de la lista continentes
+                        print(item)
+            
 
         
         elif datos_eleccion == 2:
