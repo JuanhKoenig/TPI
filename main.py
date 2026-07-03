@@ -112,11 +112,69 @@ def ver_datos():
 
         
         elif datos_eleccion == 2:
-            pass
-            #filtro por rangos de poblacion ingresados por el usuario
+            
+            try:
+
+                rango_minimo = int(input("Ingrese el rango minimo: "))
+                if rango_minimo < 0:
+                    raise ValueError("negativo")
+
+                rango_maximo = int(input("Ingrese el rango maximo: "))
+                if rango_maximo < 0:
+                    raise ValueError("negativo")
+                
+                elif rango_maximo < rango_minimo:
+                    raise ValueError("no es maximo")
+
+            except ValueError as e:
+                if str(e) == "negativo":
+                    print("\nNo se permiten valores negativos\n")
+                
+                elif str(e) == "no es maximo":
+                    print("\nEl valor maximo no puede ser menor que el valor minimo\n")
+                    
+                else:
+                    print("\nError, use solo numeros positivos\n")
+
+            
+            else:
+                for item in paises:
+                    if (item["poblacion"] > rango_minimo) and (item["poblacion"] < rango_maximo):
+                        print(item)
+
+
+
+
         elif datos_eleccion == 3:
-            pass
-            #filtro por rangos de superficie ingresados por el usuario
+            #copiar y pegar de la opcion anterior y cambiar poblacion por superficie
+            try:
+
+                rango_minimo = int(input("Ingrese el rango minimo: "))
+                if rango_minimo < 0:
+                    raise ValueError("negativo")
+
+                rango_maximo = int(input("Ingrese el rango maximo: "))
+                if rango_maximo < 0:
+                    raise ValueError("negativo")
+                
+                elif rango_maximo < rango_minimo:
+                    raise ValueError("no es maximo")
+
+            except ValueError as e:
+                if str(e) == "negativo":
+                    print("\nNo se permiten valores negativos\n")
+
+                elif str(e) == "no es maximo":
+                    print("\nEl valor maximo no puede ser menor que el valor minimo\n")
+
+                else:
+                    print("\nError, use solo numeros positivos\n")
+
+            
+            else:
+                for item in paises:
+                    if (item["superficie"] > rango_minimo) and (item["superficie"] < rango_maximo):
+                        print(item)
         else:
             break
 
