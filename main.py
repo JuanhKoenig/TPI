@@ -76,7 +76,12 @@ def menu_principal():
 def ver_datos():
 
     for item in paises:
-        print(item)
+        print(
+            f"Nombre: {item["nombre"]}\n"
+            f"Poblacion: {item["poblacion"]} hab.\n"
+            f"Superficie: {item["superficie"]} Km2\n"
+            f"Continente: {item["continente"]}\n"
+        )
 # FILTROS
 
     while True:
@@ -289,7 +294,7 @@ def agregar_pais_continente():
                 pais_nuevo_continente = "América"
 
             elif pais_nuevo_continente == 4:
-                pais_nuevo_continente = "Ántartida"
+                pais_nuevo_continente = "Antártida"
 
             elif pais_nuevo_continente == 5:
                 pais_nuevo_continente = "Europa"
@@ -429,7 +434,34 @@ def estadisticas_promedio(paises):
     return promedio_poblacion, promedio_superficie
 
 
+def estadisticas_continentes():
+    continentes = [
+        {"Nombre" : "América", "Paises" : 0},
+        {"Nombre" : "Europa", "Paises" : 0},
+        {"Nombre" : "África", "Paises" : 0},
+        {"Nombre" : "Oceanía", "Paises" : 0},
+        {"Nombre" : "Asia", "Paises" : 0},
+        {"Nombre" : "Antártida", "Paises" : 0}
+    ]
+    for item in paises:
+        if item["continente"] == "América":
+            continentes[0]["Paises"] += 1
+        
+        elif item["continente"] == "Europa":
+            continentes[1]["Paises"] += 1
 
+        elif item["continente"] == "África":
+            continentes[2]["Paises"] += 1
+
+        elif item["continente"] == "Oceanía":
+            continentes[3]["Paises"] += 1
+        
+        elif item["continente"] == "Asia":
+            continentes[4]["Paises"] += 1
+
+        elif item["continente"] == "Antártida":
+            continentes[5]["Paises"] += 1
+    return continentes
 
 def ver_estadisticas():
     extremos = estadisticas_extremos(paises) #tupla con 4 diccionarios 
@@ -439,6 +471,8 @@ def ver_estadisticas():
     menor_poblacion = extremos[1]
     mayor_superficie = extremos[2]
     menor_superficie = extremos[3]
+
+    lista_continentes = estadisticas_continentes()
 
     print("\nESTADISTICAS: \n")
 
@@ -450,6 +484,11 @@ def ver_estadisticas():
     print(f"Mayor: {mayor_superficie["nombre"]} : {mayor_superficie["superficie"]} Km2\n")
     print(f"Menor: {menor_superficie["nombre"]} : {menor_superficie["superficie"]} Km2\n")
     print(f"Promedio: {promedios[1]} Km2\n")
+
+    print(f"\nCONTINENTES:\n")
+    for item in lista_continentes:
+        print(f"{item["Nombre"]} : {item["Paises"]}")
+    print("\n")
 
 
 
