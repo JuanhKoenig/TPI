@@ -462,12 +462,14 @@ def ordenar():
 
             ordenamiento = int(input(
                 "1)Ordenar por nombre\n"
-                "2)Ordenar por Poblacion\n"
-                "3)Ordenar por superficie\n"
-                "4)Volver\n"
+                "2)Ordenar por Poblacion (menor a mayor)\n"
+                "3)Ordenar por Poblacion (mayor a menor)\n"
+                "4)Ordenar por superficie (menor a mayor)\n"
+                "5)Ordernar por superficie (mayor a menor)\n"
+                "6)Volver\n"
             ))
 
-            if ordenamiento not in (1, 2, 3, 4):
+            if ordenamiento not in (1, 2, 3, 4, 5, 6):
                 raise ValueError("fuera de rango")
 
         except ValueError as e:
@@ -489,21 +491,39 @@ def ordenar():
             elif ordenamiento == 2:
                 
                 for iteracion in range(len(paises)):
-                    for item in paises:
-                        if paises[iteracion]["poblacion"] < item["poblacion"]:
-                            p = paises.index(item)
-                            paises[iteracion], paises[p] = paises[p], paises[iteracion]
+                    for item in range(len(paises)):
+                        if paises[iteracion]["poblacion"] < paises[item]["poblacion"]:
+                            paises[iteracion], paises[item] = paises[item], paises[iteracion]
+                
+                for item in paises:
+                    print(f"{item["nombre"]} : {item["poblacion"]} hab.")
+
+            elif ordenamiento == 3:
+                for iteracion in range(len(paises)):
+                    for item in range(len(paises)):
+                        if paises[iteracion]["poblacion"] > paises[item]["poblacion"]:
+                            paises[iteracion], paises[item] = paises[item], paises[iteracion]
                 
                 for item in paises:
                     print(f"{item["nombre"]} : {item["poblacion"]} hab.")
 
 
-            elif ordenamiento == 3:
+
+            elif ordenamiento == 4:
                 for iteracion in range(len(paises)):
-                    for item in paises:
-                        if paises[iteracion]["superficie"] < item["superficie"]:
-                            p = paises.index(item)
-                            paises[iteracion], paises[p] = paises[p], paises[iteracion]
+                    for item in range(len(paises)):
+                        if paises[iteracion]["superficie"] < paises[item]["superficie"]:
+                            paises[iteracion], paises[item] = paises[item], paises[iteracion]
+                
+                for item in paises:
+                    print(f"{item["nombre"]} : {item["superficie"]} Km2")
+
+            elif ordenamiento == 5:
+                
+                for iteracion in range(len(paises)):
+                    for item in range(len(paises)):
+                        if paises[iteracion]["superficie"] > paises[item]["superficie"]:
+                            paises[iteracion], paises[item] = paises[item], paises[iteracion]
                 
                 for item in paises:
                     print(f"{item["nombre"]} : {item["superficie"]} Km2")
