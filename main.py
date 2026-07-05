@@ -477,8 +477,14 @@ def ordenar():
                 print("\nError, use numeros del 1 al 4 por favor\n")
         else:
             if ordenamiento == 1:
-                pass
-                #ordenar por nombre
+                
+                for iteracion in range (len(paises)):
+                    for item in range(len(paises)):
+                        if paises[iteracion]["nombre"] < paises[item]["nombre"]:
+                            paises[iteracion], paises[item] = paises[item], paises[iteracion]
+                
+                for i in paises:
+                    print(i)
             
             elif ordenamiento == 2:
                 
@@ -486,7 +492,7 @@ def ordenar():
                     for item in paises:
                         if paises[iteracion]["poblacion"] < item["poblacion"]:
                             p = paises.index(item)
-                            paises[iteracion], paises[p] = item, paises[iteracion]
+                            paises[iteracion], paises[p] = paises[p], paises[iteracion]
                 
                 for item in paises:
                     print(f"{item["nombre"]} : {item["poblacion"]} hab.")
@@ -497,7 +503,7 @@ def ordenar():
                     for item in paises:
                         if paises[iteracion]["superficie"] < item["superficie"]:
                             p = paises.index(item)
-                            paises[iteracion], paises[p] = item, paises[iteracion]
+                            paises[iteracion], paises[p] = paises[p], paises[iteracion]
                 
                 for item in paises:
                     print(f"{item["nombre"]} : {item["superficie"]} Km2")
