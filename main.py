@@ -599,7 +599,13 @@ def programa_principal():
             actualizar_datos()
         
         elif eleccion == 4:
-            print(buscar()) #hay que decorar esto
+            pais = buscar()
+            print(
+                f"\nNombre: {pais["nombre"]}\n"
+                f"Poblacion: {pais["poblacion"]} habitantes\n"
+                f"Superficie: {pais["superficie"]} Km2\n"
+                f"Continente: {pais["continente"]}\n"
+            )
 
         elif eleccion == 5:
             ver_estadisticas()
