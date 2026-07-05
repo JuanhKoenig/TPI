@@ -329,7 +329,14 @@ def buscar():
             for pais in paises:
                 if pais_buscado.lower() in pais["nombre"].lower():
                     pais_encontrado = True
-                    pais_datos = pais
+                    
+                    print(
+                        f"\nNombre: {pais["nombre"]}\n"
+                        f"Poblacion: {pais["poblacion"]} habitantes\n"
+                        f"Superficie: {pais["superficie"]} Km2\n"
+                        f"Continente: {pais["continente"]}\n"
+                    )
+
                 
                 
             if pais_encontrado == False:
@@ -342,7 +349,7 @@ def buscar():
                 print("Error desconocido")
         
         else:
-            return pais_datos
+            break
         
 
 #ACTUALIZAR DATOS
@@ -599,13 +606,7 @@ def programa_principal():
             actualizar_datos()
         
         elif eleccion == 4:
-            pais = buscar()
-            print(
-                f"\nNombre: {pais["nombre"]}\n"
-                f"Poblacion: {pais["poblacion"]} habitantes\n"
-                f"Superficie: {pais["superficie"]} Km2\n"
-                f"Continente: {pais["continente"]}\n"
-            )
+            buscar()
 
         elif eleccion == 5:
             ver_estadisticas()
