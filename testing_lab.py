@@ -1,12 +1,26 @@
 
-lista = [6, 3, 8, 5, 1, 4, 2, 9, 0, 7]
+lista = [
+    {"nombre": "Valentina", "edad": 23},
+    {"nombre": "Martín", "edad": 41},
+    {"nombre": "Ana", "edad": 25},
+    {"nombre": "Sofía", "edad": 19},
+    {"nombre": "Carlos", "edad": 32},
+    {"nombre": "Tomás", "edad": 30},
+    {"nombre": "Diego", "edad": 35},
+    {"nombre": "Lucía", "edad": 28}
+]
 
 
-for iteracion in range(len(lista)):
-    for numero in lista:
-        if lista[iteracion] < numero:
-            p = lista.index(numero)
-            lista[iteracion], lista[p] = lista[p] , lista[iteracion]
+for iteracion in range (len(lista)):
+    for persona in range (len(lista)):
+        if lista[iteracion]["nombre"] < lista[persona]["nombre"]:
+            # p = lista.index(persona)
+            lista[iteracion], lista[persona] = lista[persona], lista[iteracion]
 
-print(lista)
 
+
+
+
+
+for nombre in lista:
+    print(nombre)

@@ -319,7 +319,34 @@ def agregar_pais():
 # no es una funcion de usuario, esto es una herramienta que complementa a las funciones
 # de actualizar datos y buscar 
 
+
 def buscar():
+    while True:    
+        try:
+            pais_buscado = input("Buscar: ").strip().title()
+
+            pais_encontrado = False
+
+            for pais in paises:
+                if pais_buscado.lower() in pais["nombre"].lower():
+                    pais_encontrado = True
+                    pais_datos = pais
+                
+            if pais_encontrado == False:
+                raise ValueError("no encontrado")
+            
+        except ValueError as e:
+            if str(e) == "no encontrado":
+                print(f"Pais \"{pais_buscado}\" no encontrado\n")
+            else:
+                print("Error desconocido")
+        
+        else:
+            return pais_datos
+
+
+
+def busqueda_parcial():
     while True:    
         try:
             pais_buscado = input("Buscar: ").strip().title()
@@ -606,7 +633,7 @@ def programa_principal():
             actualizar_datos()
         
         elif eleccion == 4:
-            buscar()
+            busqueda_parcial()
 
         elif eleccion == 5:
             ver_estadisticas()
