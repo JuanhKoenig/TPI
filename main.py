@@ -48,13 +48,13 @@ def menu_principal():
             eleccion = int(input(
                 "1)Ver Datos\n"
                 "2)Agregar país\n"
-                "3)Ver datos\n"
+                "3)Actualizar datos\n"
                 "4)Buscar\n"
                 "5)Estadisticas\n"
                 "6)Ordenar\n"
                 "7)Salir\n"
             ))
-            if eleccion not in (1, 2, 3, 4, 5, 6):
+            if eleccion not in (1, 2, 3, 4, 5, 6, 7):
                 raise ValueError("fuera de rango")
             
         except ValueError as e:
@@ -453,6 +453,58 @@ def ver_estadisticas():
 
 
 
+#ORDENAR
+
+def ordenar():
+    
+    while True:
+        try:
+
+            ordenamiento = int(input(
+                "1)Ordenar por nombre\n"
+                "2)Ordenar por Poblacion\n"
+                "3)Ordenar por superficie\n"
+                "4)Volver\n"
+            ))
+
+            if ordenamiento not in (1, 2, 3, 4):
+                raise ValueError("fuera de rango")
+
+        except ValueError as e:
+            if str(e) == "fuera de rango":
+                print("\nError, opcion fuera de rango\n")
+            else:
+                print("\nError, use numeros del 1 al 4 por favor\n")
+        else:
+            if ordenamiento == 1:
+                pass
+                #ordenar por nombre
+            
+            elif ordenamiento == 2:
+                
+                for iteracion in range(len(paises)):
+                    for item in paises:
+                        if paises[iteracion]["poblacion"] < item["poblacion"]:
+                            p = paises.index(item)
+                            paises[iteracion], paises[p] = item, paises[iteracion]
+                
+                for item in paises:
+                    print(f"{item["nombre"]} : {item["poblacion"]} hab.")
+
+
+            elif ordenamiento == 3:
+                for iteracion in range(len(paises)):
+                    for item in paises:
+                        if paises[iteracion]["superficie"] < item["superficie"]:
+                            p = paises.index(item)
+                            paises[iteracion], paises[p] = item, paises[iteracion]
+                
+                for item in paises:
+                    print(f"{item["nombre"]} : {item["superficie"]} Km2")
+            else:
+                break
+
+
 
 
 #GUARDAR Y SALIR
@@ -488,8 +540,8 @@ def programa_principal():
             ver_estadisticas()
 
         elif eleccion == 6:
-            pass
-            #ordenar()
+            ordenar()
+
         else:
             guardar()
             break
