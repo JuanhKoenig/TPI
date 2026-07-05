@@ -44,8 +44,16 @@ def menu_principal():
 
     while True:
         try:
-            eleccion = int(input("1)Ver Datos\n2)Agregar país\n3)Actualizar datos\n4)Buscar pais\n5)Estadisticas\n6)Salir\n"))
-
+            # eleccion = int(input("1)Ver Datos\n2)Agregar país\n3)Actualizar datos\n4)Buscar pais\n5)Estadisticas\n6)Salir\n"))
+            eleccion = int(input(
+                "1)Ver Datos\n"
+                "2)Agregar país\n"
+                "3)Ver datos\n"
+                "4)Buscar\n"
+                "5)Estadisticas\n"
+                "6)Ordenar\n"
+                "7)Salir\n"
+            ))
             if eleccion not in (1, 2, 3, 4, 5, 6):
                 raise ValueError("fuera de rango")
             
@@ -73,8 +81,12 @@ def ver_datos():
 
     while True:
         try:
-            datos_eleccion = int(input("1)Filtrar por Continente\n2)Filtrar por rango de poblacion\n3)Filtrar por rango de superficie\n4)Volver\n"))
-
+            datos_eleccion = int(input(
+                "1)Filtrar por continente\n"
+                "2)Filtrar por rango de poblacion\n"
+                "3)Filtrar por rango de superficie\n"
+                "4)Volver\n"
+            ))
             if datos_eleccion not in (1, 2, 3, 4): #4 es para volver
                 raise ValueError("fuera de rango")
         
@@ -340,7 +352,7 @@ def actualizar_datos():
 
         try:
 
-            tipo_de_dato = int(input("Editar: \n1.Nombre\n2.Poblacion\n3.Superficie\n4.Continente"))
+            tipo_de_dato = int(input("Editar: \n1.Nombre\n2.Poblacion\n3.Superficie\n4.Continente\n"))
 
             if tipo_de_dato not in (1, 2, 3, 4):
                 raise ValueError("fuera de rango")
@@ -437,7 +449,7 @@ def ver_estadisticas():
     print(f"\nSUPERFICIE: \n")
     print(f"Mayor: {mayor_superficie["nombre"]} : {mayor_superficie["superficie"]} Km2\n")
     print(f"Menor: {menor_superficie["nombre"]} : {menor_superficie["superficie"]} Km2\n")
-    print(f"Promedio: {promedios[1]} Km2")
+    print(f"Promedio: {promedios[1]} Km2\n")
 
 
 
@@ -474,7 +486,10 @@ def programa_principal():
 
         elif eleccion == 5:
             ver_estadisticas()
-        
+
+        elif eleccion == 6:
+            pass
+            #ordenar()
         else:
             guardar()
             break
