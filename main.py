@@ -37,7 +37,6 @@ with open("paises.csv", "r", encoding="utf-8", newline="") as archivo:
         paises.append({"nombre" : linea["nombre"], "poblacion" : int(linea["poblacion"]), "superficie": int(linea["superficie"]), "continente" : linea["continente"]})
 
 
-
 #MENU
 
 def menu_principal():
@@ -124,7 +123,12 @@ def ver_datos():
             else:
                 for item in paises:
                     if item["continente"] == continentes[continente_seleccionado - 1]: #-1 para que se ajuste al indice de la lista continentes
-                        print(item)
+                        print(
+                            f"Nombre: {item["nombre"]}\n"
+                            f"Poblacion: {item["poblacion"]} hab.\n"
+                            f"Superficie: {item["superficie"]} Km2\n"
+                            f"Continente: {item["continente"]}\n"
+                        )
             
 
         
@@ -157,7 +161,12 @@ def ver_datos():
             else:
                 for item in paises:
                     if (item["poblacion"] > rango_minimo) and (item["poblacion"] < rango_maximo):
-                        print(item)
+                        print(
+                            f"Nombre: {item["nombre"]}\n"
+                            f"Poblacion: {item["poblacion"]} hab.\n"
+                            f"Superficie: {item["superficie"]} Km2\n"
+                            f"Continente: {item["continente"]}\n"
+                        )
 
 
 
@@ -191,7 +200,12 @@ def ver_datos():
             else:
                 for item in paises:
                     if (item["superficie"] > rango_minimo) and (item["superficie"] < rango_maximo):
-                        print(item)
+                        print(
+                            f"Nombre: {item["nombre"]}\n"
+                            f"Poblacion: {item["poblacion"]} hab.\n"
+                            f"Superficie: {item["superficie"]} Km2\n"
+                            f"Continente: {item["continente"]}\n"
+                        )
         else:
             break
 
@@ -558,8 +572,7 @@ def ordenar():
                         if paises[iteracion]["nombre"] < paises[item]["nombre"]:
                             paises[iteracion], paises[item] = paises[item], paises[iteracion]
                 
-                for i in paises:
-                    print(i)
+
             
             elif ordenamiento == 2:
                 
