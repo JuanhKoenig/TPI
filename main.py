@@ -571,7 +571,9 @@ def ordenar():
                     for item in range(len(paises)):
                         if paises[iteracion]["nombre"] < paises[item]["nombre"]:
                             paises[iteracion], paises[item] = paises[item], paises[iteracion]
-                
+
+                for item in paises:
+                    print(f"{item["nombre"]}")
 
             
             elif ordenamiento == 2:
